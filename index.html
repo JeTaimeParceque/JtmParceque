@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commandez votre création sur mesure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- DESIGN GLOBAL --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FAF9F6;
+            color: #333333;
+            line-height: 1.6;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        /* --- LOGO --- */
+        .logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-width: 180px; 
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 5px;
+            color: #2c2c2c;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* --- ENCART "CE QUI EST INCLUS" --- */
+        .info-box {
+            background-color: #Fdfbf9;
+            border-left: 4px solid #C1A58D;
+            padding: 20px;
+            margin-bottom: 35px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .info-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: #8c735a;
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .info-box li {
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+        .info-box li::before {
+            content: '✓';
+            color: #C1A58D;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 8px;
+            background: #fff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* --- STYLES DES BLOCS FORMULAIRE --- */
+        fieldset {
+            border: none;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            background-color: #fcfcfc;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+        }
+        legend {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: #2c2c2c;
+            padding: 0 15px;
+            font-size: 20px;
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* --- GRILLE DES PRODUITS --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        .product-card:has(input[type="radio"]:checked) {
+            border-color: #C1A58D;
+            background-color: #Fdfbf9;
+            box-shadow: 0 0 0 4px rgba(193, 165, 141, 0.2);
+        }
+        .product-card input[type="radio"] { display: none; }
+        
+        .product-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .product-card img:not(.carousel-img) {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover img:not(.carousel-img) { transform: scale(1.05); }
+        
+        .product-name { font-weight: 600; font-size: 15px; margin-bottom: 8px; color: #444; }
+        .product-price {
+            color: #C1A58D; font-weight: 600; font-size: 16px;
+            background: #FAF9F6; padding: 4px 12px; border-radius: 20px;
+        }
+
+        /* --- GRILLE DES DÉCORATIONS --- */
+        .deco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .deco-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .deco-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        .deco-card:has(input[type="checkbox"]:checked) {
+            border-color: #C1A58D; background-color: #Fdfbf9;
+            box-shadow: 0 0 0 3px rgba(193, 165, 141, 0.2);
+        }
+        .deco-card input[type="checkbox"] { display: none; }
+        
+        .deco-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px; 
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .deco-card img:not(.carousel-img) {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; 
+        }
+        .deco-card:hover img:not(.carousel-img),
+        .deco-card:hover .carousel-img { transform: scale(1.05); }
+
+        .deco-name { font-weight: 600; font-size: 15px; color: #444; line-height: 1.3; min-height: 32px; }
+        .deco-price { color: #C1A58D; font-size: 15px; margin-top: 5px; font-weight: 600; }
+        
+        .check-indicator {
+            width: 24px; height: 24px; border: 2px solid #ddd; border-radius: 6px;
+            margin-top: 12px; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; background: white;
+        }
+        .deco-card input[type="checkbox"]:checked ~ .check-indicator {
+            background-color: #C1A58D; border-color: #C1A58D;
+        }
+        .deco-card input[type="checkbox"]:checked ~ .check-indicator::after {
+            content: '✓'; color: white; font-size: 16px; font-weight: bold;
+        }
+
+        /* --- CARROUSEL --- */
+        .carousel-container { position: relative; width: 100%; height: 100%; }
+        .product-img-wrapper .carousel-container { height: 150px; }
+        .deco-img-wrapper .carousel-container { height: 220px; }
+        .carousel-img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0; transition: opacity 0.4s ease-in-out, transform 0.4s ease; border-radius: 8px;
+        }
+        .carousel-img.active { opacity: 1; z-index: 1; }
+        .carousel-controls {
+            position: absolute; top: 50%; width: 100%; display: flex;
+            justify-content: space-between; transform: translateY(-50%); z-index: 2; pointer-events: none;
+        }
+        .carousel-btn {
+            pointer-events: auto; background: rgba(255, 255, 255, 0.85); border: none; color: #C1A58D;
+            width: 32px; height: 32px; border-radius: 50%; font-size: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; margin: 0 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: all 0.2s; padding: 0;
+        }
+        .carousel-btn:hover { background: white; transform: scale(1.1); }
+
+        /* --- BOUTON LOUPE --- */
+        .zoom-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 5;
+            transition: transform 0.2s;
+        }
+        .zoom-btn:hover {
+            transform: scale(1.15);
+            background: white;
+        }
+
+        /* --- FENÊTRE MODALE PLEIN ÉCRAN --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            padding-top: 5vh; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.85); 
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 95%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-modal:hover, .close-modal:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        /* --- CHAMPS DE FORMULAIRE --- */
+        input[type="number"], input[type="text"], input[type="email"], input[type="tel"], textarea {
+            width: 100%; padding: 15px; margin-top: 8px; border: 1px solid #e0e0e0;
+            border-radius: 8px; box-sizing: border-box; font-family: inherit; font-size: 15px;
+        }
+        textarea {
+            resize: vertical; 
+            min-height: 120px; 
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #C1A58D;
+            box-shadow: 0 0 0 3px rgba(193, 165, 141, 0.1);
+        }
+        .form-row {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* Radios pour l'effet marbré */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .radio-label input {
+            width: auto;
+            margin: 0;
+            accent-color: #C1A58D;
+            transform: scale(1.2);
+        }
+
+        /* --- RÉCAPITULATIF & BOUTON --- */
+        .summary {
+            background-color: #2c2c2c; color: white; padding: 20px; border-radius: 12px;
+            text-align: center; font-size: 22px; margin-bottom: 25px;
+        }
+        .summary span { font-weight: 600; color: #E8D5C4; }
+        .submit-btn {
+            width: 100%; background-color: #C1A58D; color: white; border: none;
+            padding: 20px; font-size: 18px; border-radius: 12px; cursor: pointer;
+            transition: all 0.3s; font-weight: 600;
+        }
+        .submit-btn:hover { background-color: #a88d77; transform: translateY(-2px); }
+	
+	/* Style pour la note d'illustration */
+	.section-note {
+    		font-size: 13px;
+    		color: #888;
+    		text-align: center;
+    		margin-top: -10px;
+    		margin-bottom: 20px;
+    		font-style: italic;
+	}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="logo.png" alt="Logo Créations en Argile" class="logo">
+
+    <h1>Créations sur mesure</h1>
+    <div class="subtitle">
+        Chaque pièce est façonnée à la main, selon vos envies.<br>
+        Configurez votre objet ci-dessous.
+    </div>
+
+    <div class="info-box">
+        <h3>✨ Inclus dans le prix de base :</h3>
+        <ul>
+            <li>Couleurs au choix</li>
+            <li>Effet marbré (ou uni)</li>
+            <li>Motifs (collage papier)</li>
+            <li>Forme et dimension au choix</li>
+        </ul>
+    </div>
+
+    <form id="orderForm">
+        
+        <input type="hidden" name="Objet_Choisi" id="hiddenObjet">
+        <input type="hidden" name="Decorations_Supplementaires" id="hiddenDeco">
+        <input type="hidden" name="Prix_Total_Estime" id="hiddenTotal">
+
+        <fieldset>
+            <legend>Quel objet souhaitez-vous ? *</legend>
+	    <div class="section-note">
+        	(Note : Les images ci-dessous sont présentées à titre d'exemple pour illustrer la forme de l'objet)
+    	    </div>
+            <div class="product-grid">
+                
+                <label class="product-card">
+                    <input type="radio" name="baseItem" value="12" data-name="Boîte à mouchoirs rectangle" required> 
+                    <div class="product-img-wrapper">
+                        <img src="1000069778.png" alt="Boîte à mouchoirs rectangle">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="product-name">Boîte rectangle daisy</span>
+                    <span class="product-price">12 €</span>
+                </label>
+
+                <label class="product-card">
+                    <input type="radio" name="baseItem" value="10" data-name="Boîte à mouchoirs carrée"> 
+                    <div class="product-img-wrapper">
+                        <img src="1000069776.png" alt="Boîte à mouchoirs carrée ">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="product-name">Boîte carrée </span>
+                    <span class="product-price">10 €</span>
+                </label>
+
+                <label class="product-card">
+                    <input type="radio" name="baseItem" value="12" data-name="Pancarte murale"> 
+                    <div class="product-img-wrapper">
+                        <img src="IMG_20260508_200357.png" alt="Pancarte murale">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="product-name">Pancarte murale</span>
+                    <span class="product-price">12 €</span>
+                </label>
+
+                <label class="product-card">
+                    <input type="radio" name="baseItem" value="8" data-name="Support téléphone"> 
+                    <div class="product-img-wrapper">
+                        <div class="carousel-container">
+                            <img src="1000069777.jpg" class="carousel-img active" alt="Support téléphone ">
+                            <img src="1000069780.jpg" class="carousel-img" alt="Support téléphone poissons">
+                            <div class="carousel-controls">
+                                <button type="button" class="carousel-btn" onclick="changeSlide(event, -1)">&#10094;</button>
+                                <button type="button" class="carousel-btn" onclick="changeSlide(event, 1)">&#10095;</button>
+                            </div>
+                        </div>
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="product-name">Support téléphone</span>
+                    <span class="product-price">8 €</span>
+                </label>
+
+                <label class="product-card">
+                    <input type="radio" name="baseItem" value="6" data-name="4 dessous de verre"> 
+                    <div class="product-img-wrapper">
+                        <img src="1000069779.png" alt="4 dessous de verre ">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="product-name">4 dessous de verre daisy</span>
+                    <span class="product-price">6 €</span>
+                </label>
+
+                <label class="product-card">
+                    <input type="radio" name="baseItem" value="15" data-name="Dessous de plats/verres Puzzle"> 
+                    <div class="product-img-wrapper">
+                        <img src="Snapchat-298138812.png" alt="Dessous Puzzle">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="product-name">Dessous Puzzle</span>
+                    <span class="product-price">15 €</span>
+                </label>
+
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Personnalisation de base (Incluse) *</legend>
+            
+            <div class="form-row">
+                <label class="form-label">Couleur(s) souhaitée(s) *</label>
+                <input type="text" name="Couleur" placeholder="Ex: Rose pastel, Vert d'eau et Doré..." required>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Voulez-vous un effet marbré ? *</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="Effet_Marbre" value="Oui" required> Oui
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="Effet_Marbre" value="Non (Couleur unie)" required> Non (Couleur unie)
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Motifs (collage papier) - Optionnel</label>
+                <input type="text" name="Motifs" placeholder="Ex: Motif vichy, fleurs, aucun...">
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Forme et dimension - Optionnel</label>
+                <input type="text" name="Forme_et_Dimension" placeholder="Ex: Bords ondulés, environ 10cm...">
+            </div>
+            
+            <div class="form-row">
+                <label class="form-label">Quantité souhaitée *</label>
+                <input type="number" id="quantity" name="Quantite" min="1" value="1" required>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Personnalisations (Ajouts) - Optionnel</legend>
+            <div class="deco-grid">
+                
+                <label class="deco-card">
+                    <input type="checkbox" class="decoOption" value="5" data-name="Paillettes/formes à coller"> 
+                    <div class="deco-img-wrapper">
+                        <img src="1000068885.png" alt="Paillettes et formes">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="deco-name">Paillettes / Formes</span>
+                    <span class="deco-price">+5 €</span>
+                    <div class="check-indicator"></div>
+                </label>
+
+                <label class="deco-card">
+                    <input type="checkbox" class="decoOption" value="5" data-name="Lettres rondes dorées"> 
+                    <div class="deco-img-wrapper">
+                        <img src="1000068888.png" alt="Lettres rondes dorées">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="deco-name">Lettres rondes dorées</span>
+                    <span class="deco-price">+5 €</span>
+                    <div class="check-indicator"></div>
+                </label>
+
+                <label class="deco-card">
+                    <input type="checkbox" class="decoOption" value="5" data-name="Lettres carrées noires"> 
+                    <div class="deco-img-wrapper">
+                        <img src="1000068886.png" alt="Lettres carrées noires">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="deco-name">Lettres carrées noires</span>
+                    <span class="deco-price">+5 €</span>
+                    <div class="check-indicator"></div>
+                </label>
+
+                <label class="deco-card">
+                    <input type="checkbox" class="decoOption" value="5" data-name="Effet glossy"> 
+                    <div class="deco-img-wrapper">
+                        <img src="1000069786.png" alt="Effet Glossy sur puzzle">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="deco-name">Finition Glossy</span>
+                    <span class="deco-price">+5 €</span>
+                    <div class="check-indicator"></div>
+                </label>
+
+                <label class="deco-card">
+                    <input type="checkbox" class="decoOption" value="5" data-name="3 à 5 Coquillages"> 
+                    <div class="deco-img-wrapper">
+                        <div class="carousel-container">
+                            <img src="IMG_20260426_163745.jpg" class="carousel-img active" alt="Coquillages Modèle 1">
+                            <img src="IMG_20260426_163755.jpg" class="carousel-img" alt="Coquillages Modèle 2">
+                            <img src="IMG_20260426_164159.jpg" class="carousel-img" alt="Coquillages Modèle 3">
+                            <div class="carousel-controls">
+                                <button type="button" class="carousel-btn" onclick="changeSlide(event, -1)">&#10094;</button>
+                                <button type="button" class="carousel-btn" onclick="changeSlide(event, 1)">&#10095;</button>
+                            </div>
+                        </div>
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="deco-name">Coquillages (3 à 5)</span>
+                    <span class="deco-price">+5 €</span>
+                    <div class="check-indicator"></div>
+                </label>
+
+                <label class="deco-card">
+                    <input type="checkbox" class="decoOption" value="5" data-name="Papillons 3D"> 
+                    <div class="deco-img-wrapper">
+                        <img src="Picsart_26-05-09_02-31-21-401.png" alt="Papillons 3D">
+                        <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
+                    </div>
+                    <span class="deco-name">Papillons 3D</span>
+                    <span class="deco-price">+5 €</span>
+                    <div class="check-indicator"></div>
+                </label>
+
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Un petit mot pour moi ? (Optionnel)</legend>
+            <div class="form-row">
+                <label class="form-label">Une remarque, une question ou une idée spéciale à me partager :</label>
+                <textarea name="Note_Au_Createur" placeholder="Écrivez votre message ici..."></textarea>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Vos coordonnées</legend>
+            <div class="form-row">
+                <label class="form-label">Votre nom complet *</label>
+                <input type="text" name="Nom" required>
+            </div>
+            <div class="form-row">
+                <label class="form-label">Votre email *</label>
+                <input type="email" name="Email_Client" required>
+            </div>
+            <div class="form-row">
+                <label class="form-label">Votre téléphone (optionnel)</label>
+                <input type="tel" name="Telephone">
+            </div>
+        </fieldset>
+
+        <div class="summary">
+            Total estimé : <span id="totalPrice">0</span> €
+        </div>
+
+        <button type="submit" class="submit-btn">Valider ma précommande</button>
+    </form>
+</div>
+
+<div id="imageModal" class="modal">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="fullSizeImg">
+</div>
+
+<script>
+    // --- CALCUL DES PRIX ---
+    const form = document.getElementById('orderForm');
+    const baseItems = document.querySelectorAll('input[name="baseItem"]');
+    const quantityInput = document.getElementById('quantity');
+    const decoOptions = document.querySelectorAll('.decoOption');
+    const totalPriceDisplay = document.getElementById('totalPrice');
+    const submitBtn = document.querySelector('.submit-btn');
+
+    function calculateTotal() {
+        let basePrice = 0;
+        baseItems.forEach(item => { if (item.checked) basePrice = parseFloat(item.value); });
+        let decoPrice = 0;
+        decoOptions.forEach(option => { if (option.checked) decoPrice += parseFloat(option.value); });
+        let qty = parseInt(quantityInput.value) || 1;
+        totalPriceDisplay.textContent = ((basePrice + decoPrice) * qty) + " €";
+    }
+
+    baseItems.forEach(item => item.addEventListener('change', calculateTotal));
+    decoOptions.forEach(option => option.addEventListener('change', calculateTotal));
+    quantityInput.addEventListener('input', calculateTotal);
+
+    // --- ENVOI VERS GOOGLE SHEETS ---
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        
+        submitBtn.textContent = "Envoi de la commande...";
+        submitBtn.disabled = true;
+
+        let selectedBaseName = "";
+        baseItems.forEach(item => { if (item.checked) selectedBaseName = item.getAttribute('data-name'); });
+        let selectedDecos = [];
+        decoOptions.forEach(option => { if (option.checked) selectedDecos.push(option.getAttribute('data-name')); });
+        
+        document.getElementById('hiddenObjet').value = selectedBaseName;
+        document.getElementById('hiddenDeco').value = selectedDecos.length > 0 ? selectedDecos.join(', ') : "Aucune décoration";
+        document.getElementById('hiddenTotal').value = totalPriceDisplay.textContent;
+
+        let formData = new FormData(form);
+
+        // 👇 --- REMPLACE LA LIGNE EN DESSOUS PAR TON PROPRE LIEN GOOGLE APP SCRIPT --- 👇
+        const googleScriptURL = "https://script.google.com/macros/s/AKfycbzPfKTFOugY5XgMxRn8GS6kGpOaYwdxAivPYE9WNow_6qIjKk3WFvrDXaoGnSdwjlJTPw/exec";
+
+        fetch(googleScriptURL, {
+            method: "POST",
+            mode: "no-cors",
+            body: formData
+        }).then(() => {
+            alert("Merci ! Votre commande a bien été enregistrée. Je vous recontacte très vite !");
+            form.reset(); 
+            calculateTotal(); 
+            submitBtn.textContent = "Valider ma précommande"; 
+            submitBtn.disabled = false;
+        }).catch(error => {
+            alert("Oups, une erreur est survenue lors de l'envoi.");
+            submitBtn.textContent = "Valider ma précommande";
+            submitBtn.disabled = false;
+        });
+    });
+
+    // --- CARROUSEL ---
+    function changeSlide(event, direction) {
+        event.preventDefault(); event.stopPropagation();
+        const container = event.target.closest('.carousel-container');
+        const images = container.querySelectorAll('.carousel-img');
+        let currentIndex = 0;
+        images.forEach((img, index) => { if(img.classList.contains('active')) currentIndex = index; });
+        images[currentIndex].classList.remove('active');
+        let nextIndex = (currentIndex + direction + images.length) % images.length;
+        images[nextIndex].classList.add('active');
+    }
+
+    // --- LOUPE PLEIN ÉCRAN ---
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("fullSizeImg");
+    function openModal(btn, event) {
+        event.preventDefault(); event.stopPropagation();
+        const wrapper = btn.closest('.product-img-wrapper') || btn.closest('.deco-img-wrapper');
+        let img = wrapper.querySelector('img:not(.carousel-img)');
+        if (!img) { img = wrapper.querySelector('.carousel-img.active'); }
+        if (img) { modal.style.display = "block"; modalImg.src = img.src; }
+    }
+    function closeModal() { modal.style.display = "none"; }
+    window.onclick = function(event) { if (event.target == modal) { closeModal(); } }
+</script>
+
+</body>
+</html>
