@@ -231,6 +231,54 @@
             content: '✓'; color: white; font-size: 16px; font-weight: bold;
         }
 
+        /* --- QUANTITÉ COQUILLAGES / PAPILLONS --- */
+        .coq-qty-wrapper {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .coq-qty-wrapper label {
+            font-size: 13px;
+            color: #666;
+            cursor: default;
+        }
+        .coq-qty-wrapper input[type="number"] {
+            width: 60px !important;
+            padding: 5px !important;
+            margin-top: 0 !important;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* --- CHAMP PRÉCISION PAILLETTES / LETTRES --- */
+        .paillettes-detail,
+        .lettres-detail {
+            display: none;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .paillettes-detail input[type="text"],
+        .lettres-detail input[type="text"] {
+            width: 100% !important;
+            padding: 8px 10px !important;
+            margin-top: 0 !important;
+            font-size: 13px !important;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        .paillettes-detail label,
+        .lettres-detail label {
+            font-size: 12px;
+            color: #666;
+            display: block;
+            margin-bottom: 4px;
+            cursor: default;
+        }
+
         /* --- CARROUSEL --- */
         .carousel-container { position: relative; width: 100%; height: 100%; }
         .product-img-wrapper .carousel-container { height: 150px; }
@@ -369,16 +417,16 @@
             transition: all 0.3s; font-weight: 600;
         }
         .submit-btn:hover { background-color: #a88d77; transform: translateY(-2px); }
-	
-	/* Style pour la note d'illustration */
-	.section-note {
-    		font-size: 13px;
-    		color: #888;
-    		text-align: center;
-    		margin-top: -10px;
-    		margin-bottom: 20px;
-    		font-style: italic;
-	}
+
+        /* Style pour la note d'illustration */
+        .section-note {
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -400,39 +448,46 @@
             <li>Motifs (collage papier)</li>
             <li>Forme et dimension au choix</li>
         </ul>
+        <p style="font-size: 12px; margin-top: 15px; color: #8c735a; font-style: italic;">
+            ⚠️ Créations en argile auto-durcissante, non adaptées à l'usage alimentaire.
+        </p>
     </div>
 
     <form id="orderForm">
-        
+
+        <div id="errorMessage" style="display:none; background:#ffe0e0; border-left: 4px solid #e07070; color:#c0392b; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; font-weight: 600;">
+            ⚠️ Veuillez sélectionner un objet avant de valider votre commande.
+        </div>
+
         <input type="hidden" name="Objet_Choisi" id="hiddenObjet">
         <input type="hidden" name="Decorations_Supplementaires" id="hiddenDeco">
         <input type="hidden" name="Prix_Total_Estime" id="hiddenTotal">
 
         <fieldset>
             <legend>Quel objet souhaitez-vous ? *</legend>
-	    <div class="section-note">
-        	(Note : Les images ci-dessous sont présentées à titre d'exemple pour illustrer la forme de l'objet)
-    	    </div>
+            <div class="section-note">
+                (Ces photos sont de vraies créations faites à la main. La vôtre sera façonnée selon vos choix, donc forcément différente… et forcément unique.)
+            </div>
             <div class="product-grid">
                 
                 <label class="product-card">
-                    <input type="radio" name="baseItem" value="12" data-name="Boîte à mouchoirs rectangle" required> 
+                    <input type="radio" name="baseItem" value="17" data-name="Boîte à mouchoirs rectangle" required> 
                     <div class="product-img-wrapper">
                         <img src="1000069778.png" alt="Boîte à mouchoirs rectangle">
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
-                    <span class="product-name">Boîte rectangle daisy</span>
-                    <span class="product-price">12 €</span>
+                    <span class="product-name">Boîte rectangle</span>
+                    <span class="product-price">17 €</span>
                 </label>
 
                 <label class="product-card">
-                    <input type="radio" name="baseItem" value="10" data-name="Boîte à mouchoirs carrée"> 
+                    <input type="radio" name="baseItem" value="15" data-name="Boîte à mouchoirs carrée"> 
                     <div class="product-img-wrapper">
-                        <img src="1000069776.png" alt="Boîte à mouchoirs carrée ">
+                        <img src="1000069776.png" alt="Boîte à mouchoirs carrée">
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
-                    <span class="product-name">Boîte carrée </span>
-                    <span class="product-price">10 €</span>
+                    <span class="product-name">Boîte carrée</span>
+                    <span class="product-price">15 €</span>
                 </label>
 
                 <label class="product-card">
@@ -446,10 +501,10 @@
                 </label>
 
                 <label class="product-card">
-                    <input type="radio" name="baseItem" value="8" data-name="Support téléphone"> 
+                    <input type="radio" name="baseItem" value="9" data-name="Support téléphone"> 
                     <div class="product-img-wrapper">
                         <div class="carousel-container">
-                            <img src="1000069777.jpg" class="carousel-img active" alt="Support téléphone ">
+                            <img src="1000069777.jpg" class="carousel-img active" alt="Support téléphone">
                             <img src="1000069780.jpg" class="carousel-img" alt="Support téléphone poissons">
                             <div class="carousel-controls">
                                 <button type="button" class="carousel-btn" onclick="changeSlide(event, -1)">&#10094;</button>
@@ -459,27 +514,27 @@
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
                     <span class="product-name">Support téléphone</span>
-                    <span class="product-price">8 €</span>
+                    <span class="product-price">9 €</span>
                 </label>
 
                 <label class="product-card">
-                    <input type="radio" name="baseItem" value="6" data-name="4 dessous de verre"> 
+                    <input type="radio" name="baseItem" value="10" data-name="4 dessous de verre"> 
                     <div class="product-img-wrapper">
-                        <img src="1000069779.png" alt="4 dessous de verre ">
+                        <img src="1000069779.png" alt="4 dessous de verre">
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
-                    <span class="product-name">4 dessous de verre daisy</span>
-                    <span class="product-price">6 €</span>
+                    <span class="product-name">4 dessous de verre </span>
+                    <span class="product-price">10 €</span>
                 </label>
 
                 <label class="product-card">
-                    <input type="radio" name="baseItem" value="15" data-name="Dessous de plats/verres Puzzle"> 
+                    <input type="radio" name="baseItem" value="16" data-name="Dessous de plats/verres Puzzle"> 
                     <div class="product-img-wrapper">
                         <img src="Snapchat-298138812.png" alt="Dessous Puzzle">
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
                     <span class="product-name">Dessous Puzzle</span>
-                    <span class="product-price">15 €</span>
+                    <span class="product-price">16 €</span>
                 </label>
 
             </div>
@@ -526,35 +581,56 @@
             <div class="deco-grid">
                 
                 <label class="deco-card">
-                    <input type="checkbox" class="decoOption" value="5" data-name="Paillettes/formes à coller"> 
+                    <input type="checkbox" class="decoOption" value="1" data-name="Paillettes/formes à coller" id="paillettesCheck"> 
                     <div class="deco-img-wrapper">
-                        <img src="1000068885.png" alt="Paillettes et formes">
+                        <div class="carousel-container">
+                            <img src="1000068884.png" class="carousel-img" alt="Paillettes et formes 2">
+                            <img src="1000068885.png" class="carousel-img active" alt="Paillettes et formes">
+                            <div class="carousel-controls">
+                                <button type="button" class="carousel-btn" onclick="changeSlide(event, -1)">&#10094;</button>
+                                <button type="button" class="carousel-btn" onclick="changeSlide(event, 1)">&#10095;</button>
+                            </div>
+                        </div>
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
                     <span class="deco-name">Paillettes / Formes</span>
-                    <span class="deco-price">+5 €</span>
+                    <span class="deco-price">+1 €</span>
+                    <div class="paillettes-detail" id="paillettesDetail" onclick="event.stopPropagation()">
+                        <label for="paillettesForme">Précisez la forme souhaitée :</label>
+                        <input type="text" id="paillettesForme" placeholder="Ex: étoiles, fleurs, cœurs...">
+                    </div>
                     <div class="check-indicator"></div>
                 </label>
 
+                <!-- LETTRES RONDES DORÉES — 1 € / mot -->
                 <label class="deco-card">
-                    <input type="checkbox" class="decoOption" value="5" data-name="Lettres rondes dorées"> 
+                    <input type="checkbox" class="decoOption" value="0" data-name="Lettres rondes dorées" id="lettresRondesCheck"> 
                     <div class="deco-img-wrapper">
                         <img src="1000068888.png" alt="Lettres rondes dorées">
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
                     <span class="deco-name">Lettres rondes dorées</span>
-                    <span class="deco-price">+5 €</span>
+                    <span class="deco-price">1 € / mot</span>
+                    <div class="lettres-detail" id="lettresRondesDetail" onclick="event.stopPropagation()">
+                        <label for="lettresRondesMot">Mot(s) à inscrire :</label>
+                        <input type="text" id="lettresRondesMot" placeholder="Ex: AMOUR, Famille...">
+                    </div>
                     <div class="check-indicator"></div>
                 </label>
 
+                <!-- LETTRES CARRÉES NOIRES — 1 € / mot -->
                 <label class="deco-card">
-                    <input type="checkbox" class="decoOption" value="5" data-name="Lettres carrées noires"> 
+                    <input type="checkbox" class="decoOption" value="0" data-name="Lettres carrées noires" id="lettresCarreesCheck"> 
                     <div class="deco-img-wrapper">
                         <img src="1000068886.png" alt="Lettres carrées noires">
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
                     <span class="deco-name">Lettres carrées noires</span>
-                    <span class="deco-price">+5 €</span>
+                    <span class="deco-price">1 € / mot</span>
+                    <div class="lettres-detail" id="lettresCarreesDetail" onclick="event.stopPropagation()">
+                        <label for="lettresCarreesMot">Mot(s) à inscrire :</label>
+                        <input type="text" id="lettresCarreesMot" placeholder="Ex: HOME, Bonheur...">
+                    </div>
                     <div class="check-indicator"></div>
                 </label>
 
@@ -565,12 +641,14 @@
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
                     <span class="deco-name">Finition Glossy</span>
+                    <span style="font-size: 12px; color: #999; font-style: italic; margin-top: 3px;">(Résine UV)</span>
                     <span class="deco-price">+5 €</span>
                     <div class="check-indicator"></div>
                 </label>
 
+                <!-- COQUILLAGES avec quantité -->
                 <label class="deco-card">
-                    <input type="checkbox" class="decoOption" value="5" data-name="3 à 5 Coquillages"> 
+                    <input type="checkbox" class="decoOption" value="0" data-name="Coquillages" id="coquillagesCheck"> 
                     <div class="deco-img-wrapper">
                         <div class="carousel-container">
                             <img src="IMG_20260426_163745.jpg" class="carousel-img active" alt="Coquillages Modèle 1">
@@ -583,19 +661,28 @@
                         </div>
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
-                    <span class="deco-name">Coquillages (3 à 5)</span>
-                    <span class="deco-price">+5 €</span>
+                    <span class="deco-name">Coquillages</span>
+                    <span class="deco-price">0,20 € / coquillage</span>
+                    <div class="coq-qty-wrapper" onclick="event.stopPropagation()">
+                        <label for="coquillagesQty">Quantité :</label>
+                        <input type="number" id="coquillagesQty" min="1" max="30" value="1">
+                    </div>
                     <div class="check-indicator"></div>
                 </label>
 
+                <!-- PAPILLONS avec quantité -->
                 <label class="deco-card">
-                    <input type="checkbox" class="decoOption" value="5" data-name="Papillons 3D"> 
+                    <input type="checkbox" class="decoOption" value="0" data-name="Papillons 3D" id="papillonsCheck"> 
                     <div class="deco-img-wrapper">
                         <img src="Picsart_26-05-09_02-31-21-401.png" alt="Papillons 3D">
                         <button type="button" class="zoom-btn" onclick="openModal(this, event)">🔍</button>
                     </div>
                     <span class="deco-name">Papillons 3D</span>
-                    <span class="deco-price">+5 €</span>
+                    <span class="deco-price">1 € / papillon</span>
+                    <div class="coq-qty-wrapper" onclick="event.stopPropagation()">
+                        <label for="papillonsQty">Quantité :</label>
+                        <input type="number" id="papillonsQty" min="1" max="20" value="1">
+                    </div>
                     <div class="check-indicator"></div>
                 </label>
 
@@ -639,6 +726,23 @@
     <img class="modal-content" id="fullSizeImg">
 </div>
 
+<footer style="max-width: 800px; margin: 30px auto 20px auto; text-align: center; padding: 25px 20px; border-top: 1px solid #e8e0d8;">
+    <p style="font-family: 'Playfair Display', serif; font-size: 16px; color: #8c735a; margin-bottom: 15px;">Retrouvez-nous sur</p>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <a href="https://www.instagram.com/jetaimeparceque.decoration?igsh=MXdtZWd0aG45MXZ5eA==" target="_blank"
+           style="display:flex; align-items:center; gap:8px; text-decoration:none; background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:white; padding:10px 20px; border-radius:25px; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+        </a>
+        <a href="https://www.vinted.fr/member/3150974506-jetaimeparceque" target="_blank"
+           style="display:flex; align-items:center; gap:8px; text-decoration:none; background-color:#09B1BA; color:white; padding:10px 20px; border-radius:25px; font-family:'Poppins',sans-serif; font-size:14px; font-weight:600;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.2 0H4.8C2.148 0 0 2.148 0 4.8v14.4C0 21.852 2.148 24 4.8 24h14.4c2.652 0 4.8-2.148 4.8-4.8V4.8C24 2.148 21.852 0 19.2 0zm-3.36 7.2l-3.84 9.6h-2.4L5.76 7.2h2.52l2.4 6.36 2.4-6.36h2.76z"/></svg>
+            Vinted
+        </a>
+    </div>
+    <p style="font-size: 11px; color: #bbb; margin-top: 20px; font-family: 'Poppins', sans-serif;">© jetaimeparceque.decoration — Créations artisanales faites à la main </p>
+</footer>
+
 <script>
     // --- CALCUL DES PRIX ---
     const form = document.getElementById('orderForm');
@@ -647,40 +751,120 @@
     const decoOptions = document.querySelectorAll('.decoOption');
     const totalPriceDisplay = document.getElementById('totalPrice');
     const submitBtn = document.querySelector('.submit-btn');
+    const coquillagesQtyInput = document.getElementById('coquillagesQty');
+    const papillonsQtyInput = document.getElementById('papillonsQty');
+
+    // Compte le nombre de mots saisis (séparés par espaces ou virgules)
+    function countWords(str) {
+        return str.trim().split(/[\s,]+/).filter(w => w.length > 0).length;
+    }
 
     function calculateTotal() {
         let basePrice = 0;
         baseItems.forEach(item => { if (item.checked) basePrice = parseFloat(item.value); });
+
         let decoPrice = 0;
-        decoOptions.forEach(option => { if (option.checked) decoPrice += parseFloat(option.value); });
+        decoOptions.forEach(option => {
+            if (option.checked) {
+                if (option.id === 'coquillagesCheck') {
+                    let qtyCoquillages = parseInt(coquillagesQtyInput.value) || 1;
+                    decoPrice += qtyCoquillages * 0.20;
+                } else if (option.id === 'papillonsCheck') {
+                    let qtyPapillons = parseInt(papillonsQtyInput.value) || 1;
+                    decoPrice += qtyPapillons * 1;
+                } else if (option.id === 'lettresRondesCheck') {
+                    let motRondes = document.getElementById('lettresRondesMot').value;
+                    let nbMots = motRondes.trim() ? countWords(motRondes) : 1;
+                    decoPrice += nbMots * 1;
+                } else if (option.id === 'lettresCarreesCheck') {
+                    let motCarrees = document.getElementById('lettresCarreesMot').value;
+                    let nbMots = motCarrees.trim() ? countWords(motCarrees) : 1;
+                    decoPrice += nbMots * 1;
+                } else {
+                    decoPrice += parseFloat(option.value);
+                }
+            }
+        });
+
         let qty = parseInt(quantityInput.value) || 1;
-        totalPriceDisplay.textContent = ((basePrice + decoPrice) * qty) + " €";
+        totalPriceDisplay.textContent = ((basePrice + decoPrice) * qty).toFixed(2);
     }
 
     baseItems.forEach(item => item.addEventListener('change', calculateTotal));
     decoOptions.forEach(option => option.addEventListener('change', calculateTotal));
     quantityInput.addEventListener('input', calculateTotal);
+    coquillagesQtyInput.addEventListener('input', calculateTotal);
+    papillonsQtyInput.addEventListener('input', calculateTotal);
+    document.getElementById('lettresRondesMot').addEventListener('input', calculateTotal);
+    document.getElementById('lettresCarreesMot').addEventListener('input', calculateTotal);
+
+    // Afficher/masquer les champs détail
+    document.getElementById('paillettesCheck').addEventListener('change', function() {
+        document.getElementById('paillettesDetail').style.display = this.checked ? 'block' : 'none';
+    });
+    document.getElementById('lettresRondesCheck').addEventListener('change', function() {
+        document.getElementById('lettresRondesDetail').style.display = this.checked ? 'block' : 'none';
+        calculateTotal();
+    });
+    document.getElementById('lettresCarreesCheck').addEventListener('change', function() {
+        document.getElementById('lettresCarreesDetail').style.display = this.checked ? 'block' : 'none';
+        calculateTotal();
+    });
 
     // --- ENVOI VERS GOOGLE SHEETS ---
     form.addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        
+        e.preventDefault();
+
+        let produitSelectionne = false;
+        baseItems.forEach(item => { if (item.checked) produitSelectionne = true; });
+
+        const errorMsg = document.getElementById('errorMessage');
+
+        if (!produitSelectionne) {
+            errorMsg.style.display = 'block';
+            errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        } else {
+            errorMsg.style.display = 'none';
+        }
+
         submitBtn.textContent = "Envoi de la commande...";
         submitBtn.disabled = true;
 
         let selectedBaseName = "";
         baseItems.forEach(item => { if (item.checked) selectedBaseName = item.getAttribute('data-name'); });
+
         let selectedDecos = [];
-        decoOptions.forEach(option => { if (option.checked) selectedDecos.push(option.getAttribute('data-name')); });
+        decoOptions.forEach(option => {
+            if (option.checked) {
+                if (option.id === 'coquillagesCheck') {
+                    let qtyCoquillages = parseInt(coquillagesQtyInput.value) || 1;
+                    selectedDecos.push("Coquillages x" + qtyCoquillages);
+                } else if (option.id === 'papillonsCheck') {
+                    let qtyPapillons = parseInt(papillonsQtyInput.value) || 1;
+                    selectedDecos.push("Papillons 3D x" + qtyPapillons);
+                } else if (option.id === 'lettresRondesCheck') {
+                    let mot = document.getElementById('lettresRondesMot').value.trim();
+                    selectedDecos.push("Lettres rondes dorées" + (mot ? ' : "' + mot + '"' : ""));
+                } else if (option.id === 'lettresCarreesCheck') {
+                    let mot = document.getElementById('lettresCarreesMot').value.trim();
+                    selectedDecos.push("Lettres carrées noires" + (mot ? ' : "' + mot + '"' : ""));
+                } else if (option.id === 'paillettesCheck') {
+                    let forme = document.getElementById('paillettesForme').value.trim();
+                    selectedDecos.push("Paillettes/Formes" + (forme ? " (" + forme + ")" : ""));
+                } else {
+                    selectedDecos.push(option.getAttribute('data-name'));
+                }
+            }
+        });
         
         document.getElementById('hiddenObjet').value = selectedBaseName;
         document.getElementById('hiddenDeco').value = selectedDecos.length > 0 ? selectedDecos.join(', ') : "Aucune décoration";
-        document.getElementById('hiddenTotal').value = totalPriceDisplay.textContent;
+        document.getElementById('hiddenTotal').value = totalPriceDisplay.textContent + " €";
 
         let formData = new FormData(form);
 
-        // 👇 --- REMPLACE LA LIGNE EN DESSOUS PAR TON PROPRE LIEN GOOGLE APP SCRIPT --- 👇
-        const googleScriptURL = "https://script.google.com/macros/s/AKfycbzPfKTFOugY5XgMxRn8GS6kGpOaYwdxAivPYE9WNow_6qIjKk3WFvrDXaoGnSdwjlJTPw/exec";
+        const googleScriptURL = "https://script.google.com/macros/s/AKfycbww02iX3vO_3YNcRfuismd6cfEJpZiHBKwatedZx8ZhOdNbjpPFoDM1foEMNU3oExT5Kg/exec";
 
         fetch(googleScriptURL, {
             method: "POST",
@@ -688,9 +872,14 @@
             body: formData
         }).then(() => {
             alert("Merci ! Votre commande a bien été enregistrée. Je vous recontacte très vite !");
-            form.reset(); 
-            calculateTotal(); 
-            submitBtn.textContent = "Valider ma précommande"; 
+            form.reset();
+            coquillagesQtyInput.value = 1;
+            papillonsQtyInput.value = 1;
+            document.getElementById('paillettesDetail').style.display = 'none';
+            document.getElementById('lettresRondesDetail').style.display = 'none';
+            document.getElementById('lettresCarreesDetail').style.display = 'none';
+            calculateTotal();
+            submitBtn.textContent = "Valider ma précommande";
             submitBtn.disabled = false;
         }).catch(error => {
             alert("Oups, une erreur est survenue lors de l'envoi.");
